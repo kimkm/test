@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="codeSpace">
+	<typeAlias  alias="egovMap" type="org.egovframe.rte.psl.dataaccess.util.EgovMap"/>
+
+
+	<insert id="fileDAO.insertFiles">
+	INSERT INTO audios(id,device,filename,rdate) VALUES(audios_seq.nextval,#i#,#filename#,#d#)
+	</insert>
+	
+	<select id="fileDAO.selectFiles" resultClass="egovMap">		
+		SELECT * FROM (
+			SELECT ROWNUM AS RNUM, A.* FROM (
+				SELECT
+					id,
+					device i,
+					filename,
+					rdate d <!-- TO_CHAR(TO_DATE(rdate, 'YYYYMMDDHH24MISS'), 'YY-MM-DD HH24:MI:SS') d -->
+				FROM
+				audios
+				order by id desc
+			) A WHERE ROWNUM &lt;= (#page#*10)
+		) WHERE RNUM &gt; (#page#-1)*10 order by id desc
+	</select>
+	
+	<select id="fileDAO.totalCount" resultClass="java.lang.Integer">
+		select count(id)
+		totcnt from audios where 1=1
+	</select>
+	
+	<delete id="fileDAO.deleteFiles">
+		delete from audios where id=#id#
+	</delete>
+
+</sqlMap>
