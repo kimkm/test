@@ -33,7 +33,7 @@
 			<br> <br> 
 		<table>
 		<tr><th> Method </th><td> POST</td></tr>  
-		<tr><th> Host </th><td> 192.168.219.106:8080/test/api/datainput.do</td></tr>
+		<tr><th> Host </th><td> <%= request.getServerName() %>:<%=request.getServerPort() %>/test/api/datainput.do</td></tr>
 		<tr><th> Header</th><td> Content-Type: application/json</td></tr>
 		<tr><th> Body </th><td>{ "t":[float], "h":[float], "c":[float], "i":[String], "d":[String] }</td></tr>
 		<tr><th> Result </th><td> { "result":"OK" }</td></tr>
@@ -41,7 +41,7 @@
 		<br><br>
 		<table>
 		<tr><th> Method </th><td> GET</td></tr>  
-		<tr><th> Host </th><td> 192.168.219.106:8080/test/api/datainput.do?i=dev02&d=20231122112233&t=25.2&h=80.5&c=455.6</td></tr>
+		<tr><th> Host </th><td> <%= request.getServerName() %>:<%=request.getServerPort() %>/test/api/datainput.do?i=dev02&d=20231122112233&t=25.2&h=80.5&c=455.6</td></tr>
 		<tr><th> Result </th><td> "OK" </td></tr>
 		</table>
 ※i:장치명(문자), t:온도(숫자), h:습도(숫자), c:CO₂(숫자), d:등록일시(문자)

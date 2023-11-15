@@ -27,7 +27,7 @@ import java.util.List;
 
 @Controller
 public class FileUploadController {
-	private String paths = "/home/atoz/upload/";// "C:/egovframework/";//
+	private String paths =  "C:/egovframework/";//"/home/atoz/upload/";//
 
 	@Resource(name = "fileService")
 	private FileService fileService;

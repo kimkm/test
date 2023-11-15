@@ -25,7 +25,7 @@ import egovframework.datas.service.FileVO;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-	private String paths = "/home/atoz/upload/";// "C:/egovframework/";//
+	private String paths = "C:/egovframework/";// "/home/atoz/upload/";//
 	
 	@Resource(name ="dataService")
 	private DataService dataService;
@@ -33,7 +33,7 @@ public class ApiController {
 	@Resource(name="fileService")
 	private FileService fileService;
 	
-	@PostMapping(value="/datainput.do")
+	@RequestMapping(value="/datainput.do")
 	public String apiInput(@RequestBody DataVO vo) throws Exception{
 		String result = dataService.insertDatas(vo);
 		if(result == null) {
@@ -60,7 +60,7 @@ public class ApiController {
 	}
 	
 	
-	@PostMapping(value = "/fileUpload.do")
+	@RequestMapping(value = "/fileUpload.do")
 	public String write(@ModelAttribute("fileVO") FileVO fileVO) throws Exception {
 		String fileName = null;
 		MultipartFile uploadFile = fileVO.getAwfile();

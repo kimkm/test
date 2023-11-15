@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 		<th>Host</th>
-		<td>192.168.219.106:8080/test/api/fileUpload.do</td>
+		<td><%= request.getServerName() %>:<%=request.getServerPort() %>/test/api/fileUpload.do</td>
 	</tr>
 	<tr>
 		<th>Header</th>
