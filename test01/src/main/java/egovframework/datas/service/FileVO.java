@@ -4,12 +4,27 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileVO {
 	private int id;
-	private String filename;
+	private String filename;//파일명
 	private MultipartFile awfile;
-	private String d;
-	private String i;
+	private String d;//등록일
+	private String i;//장치명
 	private int page=1;
+	private int kb=0;//용량
+	private int se=0;//재생시간
 	
+	
+	public int getKb() {
+		return kb;
+	}
+	public void setKb(int kb) {
+		this.kb = kb;
+	}
+	public int getSe() {
+		return se;
+	}
+	public void setSe(int se) {
+		this.se = se;
+	}
 	public int getId() {
 		return id;
 	}

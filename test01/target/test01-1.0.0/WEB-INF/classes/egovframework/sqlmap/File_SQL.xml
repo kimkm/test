@@ -5,7 +5,7 @@
 
 
 	<insert id="fileDAO.insertFiles">
-	INSERT INTO audios(id,device,filename,rdate) VALUES(audios_seq.nextval,#i#,#filename#,#d#)
+	INSERT INTO audios(id,device,filename,rdate,kbyte,sec) VALUES(audios_seq.nextval,#i#,#filename#,#d#,#kb#,#se#)
 	</insert>
 	
 	<select id="fileDAO.selectFiles" resultClass="egovMap">		
@@ -15,7 +15,9 @@
 					id,
 					device i,
 					filename,
-					rdate d <!-- TO_CHAR(TO_DATE(rdate, 'YYYYMMDDHH24MISS'), 'YY-MM-DD HH24:MI:SS') d -->
+					rdate d, <!-- TO_CHAR(TO_DATE(rdate, 'YYYYMMDDHH24MISS'), 'YY-MM-DD HH24:MI:SS') d -->
+					kbyte kb,
+					sec se
 				FROM
 				audios
 				order by id desc

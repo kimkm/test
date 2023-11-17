@@ -22,12 +22,14 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioSystem;
 
 import java.util.List;
 
 @Controller
 public class FileUploadController {
-	private String paths =  "C:/egovframework/";//"/home/atoz/upload/";//
+	private String paths = "/home/atoz/upload/";// "C:/egovframework/";//
 
 	@Resource(name = "fileService")
 	private FileService fileService;
@@ -52,6 +54,21 @@ public class FileUploadController {
 			uploadFile.transferTo(new File(paths + fileName));
 			fileVO.setFilename(fileName);
 			System.out.println(fileVO.getFilename());
+			// WAV 파일 정보 추출
+			if (ext.equalsIgnoreCase("wav")) {
+				File wavFile = new File(paths + fileName);
+				try {
+					AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(wavFile);
+					long fileSize = wavFile.length() /1024;
+					double duration = (double) fileFormat.getFrameLength() / fileFormat.getFormat().getFrameRate();
+					fileVO.setKb((int)fileSize);
+					fileVO.setSe((int)duration);
+					System.out.println("파일 용량: " + fileSize + "KB");
+					System.out.println("재생 시간: " + (int)duration + "초");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			// DB저장
 			String result = fileService.insertFiles(fileVO);
 			if (result == null) {
