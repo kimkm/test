@@ -29,7 +29,7 @@ import java.util.List;
 
 @Controller
 public class FileUploadController {
-	private String paths = "/home/atoz/upload/";// "C:/egovframework/";//
+	private String paths = "C:/egovframework/";// "/home/atoz/upload/";//
 
 	@Resource(name = "fileService")
 	private FileService fileService;
@@ -106,11 +106,18 @@ public class FileUploadController {
 		}
 		return "redirect:fileList.do";
 	}
+	
+	//파일 필터
+	@RequestMapping(value="fileFilter.do")
+	public String fileFiltering(FileVO vo)throws Exception{
+		System.out.println(vo.getFilename());
+		fileService.filterFiles(vo, paths);
+		return "redirect:fileList.do";
+	}
 
 	// 파일 반환
 	@RequestMapping(value = "fileDownload.do")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		String filename = request.getParameter("fileName");
 		String realFilename = "";
 		System.out.println(filename);

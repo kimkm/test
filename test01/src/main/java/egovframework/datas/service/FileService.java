@@ -7,4 +7,5 @@ public interface FileService {
 	public List<?> selectFiles(FileVO vo) throws Exception;
 	public int totalFiles() throws Exception;
 	public int deleteFiles(int id) throws Exception;
+	public boolean filterFiles(FileVO vo,String path) throws Exception;
 }

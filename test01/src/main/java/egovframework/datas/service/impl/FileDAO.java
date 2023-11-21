@@ -26,5 +26,9 @@ public class FileDAO extends EgovAbstractDAO {
 		// TODO Auto-generated method stub
 		return (int) delete("fileDAO.deleteFiles",id);
 	}
+	
+	public int filterFiles(FileVO vo) {
+		return (int) update("fileDAO.filterFiles",vo);
+	}
 
 }

@@ -33,5 +33,9 @@
 	<delete id="fileDAO.deleteFiles">
 		delete from audios where id=#id#
 	</delete>
+	
+	<update id="fileDAO.filterFiles">
+		update audios set filename=#filename# where id=#id#
+	</update>
 
 </sqlMap>
