@@ -8,4 +8,7 @@ public interface FileService {
 	public int totalFiles() throws Exception;
 	public int deleteFiles(int id) throws Exception;
 	public boolean filterFiles(FileVO vo,String path) throws Exception;
+	public boolean noisefilterFiles(FileVO vo,String path) throws Exception;
+	public boolean noisefilterFiles2(FileVO vo,String path) throws Exception;
+	public boolean noisefilterFiles3(FileVO vo,String path) throws Exception;
 }

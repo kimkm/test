@@ -29,7 +29,7 @@ import egovframework.datas.service.FileVO;
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-	private String paths = "C:/egovframework/";// "/home/atoz/upload/";//
+	private String paths = "/home/atoz/upload/";
 
 	@Resource(name = "dataService")
 	private DataService dataService;

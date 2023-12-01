@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import egovframework.datas.service.FileService;
 import egovframework.datas.service.FileVO;
 
@@ -29,7 +30,7 @@ import java.util.List;
 
 @Controller
 public class FileUploadController {
-	private String paths = "C:/egovframework/";// "/home/atoz/upload/";//
+	private String paths = "/home/atoz/upload/";
 
 	@Resource(name = "fileService")
 	private FileService fileService;
@@ -97,24 +98,47 @@ public class FileUploadController {
 		System.out.println(vo.getFilename());
 		int result = fileService.deleteFiles(vo.getId());
 		if (result == 1) {
-			File file = new File(paths + vo.getFilename());
 			System.out.println("DB 삭제성공!");
+			File file = new File(paths + vo.getFilename());
 			if (file.delete()) {
 				System.out.println("파일 삭제성공!");
+			}
+			if(vo.getFilename().substring(0, 2).equals("F_")) {
+				//System.out.println(vo.getFilename().substring(0, 2));
+				File file2 = new File(paths + vo.getFilename().substring(2));
+				if (file2.delete()) {
+					//System.out.println(vo.getFilename().substring(2));
+					System.out.println("원본 파일 삭제성공!");
+				}
 			}
 
 		}
 		return "redirect:fileList.do";
 	}
 	
-	//파일 필터
+	//LowPassFilter 필터
 	@RequestMapping(value="fileFilter.do")
 	public String fileFiltering(FileVO vo)throws Exception{
 		System.out.println(vo.getFilename());
 		fileService.filterFiles(vo, paths);
 		return "redirect:fileList.do";
 	}
-
+	
+	//NoiseFilter
+	@RequestMapping(value="noisefileFilter.do")
+	public String noiseFiltering(FileVO vo)throws Exception{
+		System.out.println(vo.getFilename());
+		String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("win")) {
+			System.out.println("윈도우서버 실행중");
+			fileService.noisefilterFiles2(vo, paths);
+		}else {
+			System.out.println("리눅스서버 실행중");
+			fileService.noisefilterFiles3(vo, paths);			
+		}
+		return "redirect:fileList.do";
+	}
+	
 	// 파일 반환
 	@RequestMapping(value = "fileDownload.do")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws Exception {

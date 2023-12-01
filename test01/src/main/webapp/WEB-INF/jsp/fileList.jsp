@@ -35,7 +35,7 @@
 					브라우저가 오디오를 지원하지 않습니다.
 			</audio>
 				<c:if test="${fn:substring(result.filename,0,2) ne 'F_'}">
-					<br><a href="fileFilter.do?id=${result.id}&filename=${result.filename}">[로우패스 필터]</a>
+					<br><a href="fileFilter.do?id=${result.id}&filename=${result.filename}">[로우패스 필터]</a> | <a href="noisefileFilter.do?id=${result.id}&filename=${result.filename}">[노이즈 필터]</a> 
 				</c:if></td>
 			<td>${result.d}<br>( ${result.kb}KB / ${result.se}초 )
 			</td>
