@@ -14,6 +14,7 @@ egovframework\example\sample\service\SampleVO.class
 egovframework\datas\service\impl\FileServiceImpl.class
 egovframework\example\sample\service\impl\EgovSampleServiceImpl.class
 egovframework\datas\service\impl\Filtering.class
+egovframework\interceptor\SampleInterceptor.class
 egovframework\datas\service\impl\DataServiceImpl.class
 egovframework\example\cmmn\EgovSampleExcepHndlr.class
 egovframework\example\sample\service\SampleDefaultVO.class
