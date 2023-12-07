@@ -17,67 +17,65 @@ table {
 th, td {
 	border: 1px solid #cccccc;
 	padding: 5px;
-
 }
 
 th {
 	background-color: #ffffca;
 }
+
 audio {
-	height: 30px;
+	height: 28px;
 }
 
-        body {
-            display: flex;
-            justify-content: center;
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+}
 
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9998;
-            display: none;
-        }
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #f09, #3023AE, #cddc39, #cd0000, #FFDD00);
+    background-size: 200% 200%;
+    animation: progress 2s linear infinite;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 
-        .loader {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(to right, #f09, #3023AE, #cddc39, #cd0000, #FFDD00);
-            background-size: 200% 200%;
-            animation: progress 2s linear infinite;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
+.loader::before {
+    content: "Filtering...!";
+    color: white;
+    font-size: 30px;
+}
 
-        .loader::before {
-            content: "Filtering...!";
-            color: white;
-            font-size: 30px;
-        }
-
-        @keyframes progress {
-            0% {
-                background-position: 100% 0;
-            }
-            100% {
-                background-position: 0 100%;
-            }
-        }
-
+@keyframes progress {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
 </style>
 </head>
 <body>
